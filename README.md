@@ -25,7 +25,7 @@ Ensure you have the following installed on your system:
 Execute the script from the terminal using the argument structure defined in the assignment
 
 ```bash
-python <RollNumber>.py <SingerName> <NumberOfVideos> <AudioDuration> <OutputFileName>
+python 102303246.py <SingerName> <NumberOfVideos> <AudioDuration> <OutputFileName>
 
 ```
 
@@ -53,7 +53,3 @@ python 102303246.py "Sharry Maan" 20 30 output.mp3
 ```
 
 *This command downloads 20 songs by Sharry Maan, trims the first 30 seconds of each, and saves the result as `output.mp3`.*
-
-```
-
-```
