@@ -36,7 +36,7 @@ The application executes a linear data processing pipeline designed for efficien
 
 1.  Clone the repository:
     ```bash
-    git clone [https://github.com/tavishsood/mashup_cli.git](https://github.com/your-username/mashup_cli.git)
+    git clone https://github.com/tavishsood/mashup_cli.git
     cd mashup_cli
     ```
 
@@ -50,7 +50,7 @@ The application executes a linear data processing pipeline designed for efficien
 Execute the script using the strict argument structure defined in the assignment:
 
 ```bash
-python <RollNumber>.py <SingerName> <NumberOfVideos> <AudioDuration> <OutputFileName>
+python 102303246.py <SingerName> <NumberOfVideos> <AudioDuration> <OutputFileName>
 
 ```
 
@@ -64,4 +64,4 @@ python <RollNumber>.py <SingerName> <NumberOfVideos> <AudioDuration> <OutputFile
 ### Example Run
 
 ```bash
-python 102103123.py "Sharry Maan" 20 30 output.mp3
+python 102303246.py "Sharry Maan" 20 30 output.mp3
