@@ -50,7 +50,7 @@ def convert_to_mp3(initial_path, output_path):
 
 def main():
     if len(sys.argv) < 5:
-        print('Usage: python script.py "search query" N duration output_file_name')
+        print('Usage: python 102303246.py "search query" N duration output_file_name')
         sys.exit(1)
 
     search_query = sys.argv[1]
