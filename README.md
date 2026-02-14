@@ -8,7 +8,7 @@ The application executes a linear data processing pipeline designed for efficien
 
 1.  **Input Validation & Parsing:**
     * The script first parses command-line arguments using `sys.argv`.
-    * **Constraint Check:** It validates that $N$ (Videos) > 10 and $Y$ (Duration) > 20 seconds. If constraints are violated, the program terminates immediately with an error message.
+    * **Constraint Check:** It checks for the correct number of arguments (4) and validates that $N$ (No. of Videos) > 10 and $Y$ (Duration) > 20 seconds. If constraints are violated, the program terminates immediately with an error message.
 
 2.  **YouTube Scraping & Extraction:**
     * Utilizing **`yt-dlp`**, the script performs a search query for the specified "Artist Name".
