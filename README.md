@@ -1,55 +1,67 @@
-# 🎵 Mashup CLI Tool
 
-A dedicated command-line utility that automates the creation of audio mashups. It scrapes YouTube for a specific artist, downloads their top tracks, extracts a specific segment from each, and merges them into a single audio file.
+# Mashup Generator: CLI Tool
 
-## ⚙️ Prerequisites
-Ensure you have the following installed on your system:
+A robust command-line utility designed to automate the creation of audio mashups. This tool scrapes YouTube for a specified artist, downloads their top tracks, extracts a precise audio segment from each, and merges them into a seamless continuous mix.
+
+## Methodology
+The application executes a linear data processing pipeline designed for efficiency and strict constraint adherence:
+
+1.  **Input Validation & Parsing:**
+    * The script first parses command-line arguments using `sys.argv`.
+    * **Constraint Check:** It validates that $N$ (Videos) > 10 and $Y$ (Duration) > 20 seconds. If constraints are violated, the program terminates immediately with an error message.
+
+2.  **YouTube Scraping & Extraction:**
+    * Utilizing **`yt-dlp`**, the script performs a search query for the specified "Artist Name".
+    * It extracts the metadata (URLs) for the top $N$ results, filtering out playlists or non-video entries to ensure quality.
+
+3.  **Audio Down-sampling:**
+    * To optimize bandwidth, the tool downloads **audio-only streams** (m4a/webm) rather than full video files.
+    * These streams are immediately converted to a consistent format (`.mp3` or `.wav`) using **FFmpeg**, ensuring compatibility for the merging phase.
+
+4.  **Temporal Trimming (Signal Processing):**
+    * The system iterates through the downloaded tracks and applies a strict time-based cut.
+    * **Logic:** `ffmpeg -ss 0 -t <Duration> -i input.mp3 output_trimmed.mp3`
+    * This extracts exactly the first $Y$ seconds from the start of each track.
+
+5.  **Concatenation & Normalization:**
+    * The trimmed clips are merged into a single continuous audio stream.
+    * The final output is saved locally with the user-defined filename.
+
+## Prerequisites
 * **Python 3.x**
-* **FFmpeg** (Must be added to your system PATH)
+* **FFmpeg** (Critical: Must be installed and added to System PATH)
+* **Libraries:** `yt-dlp`, `pydub` (or `moviepy`)
 
-## 📥 Installation
+## Installation
 
-1.  Clone this repository:
+1.  Clone the repository:
     ```bash
-    git clone [https://github.com/your-username/mashup-cli.git](https://github.com/your-username/mashup-cli.git)
-    cd mashup-cli
+    git clone [https://github.com/tavishsood/mashup_cli.git](https://github.com/your-username/mashup_cli.git)
+    cd mashup_cli
     ```
 
-2.  Install the required dependencies:
+2.  Install dependencies:
     ```bash
     pip install -r requirements.txt
     ```
 
-## 🚀 Usage
+## Usage
 
-Execute the script from the terminal using the argument structure defined in the assignment
+Execute the script using the strict argument structure defined in the assignment:
 
 ```bash
-python 102303246.py <SingerName> <NumberOfVideos> <AudioDuration> <OutputFileName>
+python <RollNumber>.py <SingerName> <NumberOfVideos> <AudioDuration> <OutputFileName>
 
 ```
 
 ### Parameters
 
-* **SingerName:** Name of the artist. Use quotes if the name has spaces (e.g., "Sharry Maan"). 
-
-
-* **NumberOfVideos:** Total songs to include in the mashup. **Must be > 10**. 
-
-
-* **AudioDuration:** Length of the clip to cut from the start of each song (in seconds). **Must be > 20**. 
-
-
-* 
-**OutputFileName:** The name of the final output file (e.g., `output.mp3`). 
-
-
+* **SingerName:** Name of the artist (e.g., "The Weeknd"). Use quotes for multi-word names.
+* **NumberOfVideos:** Total songs to scrape. **Must be > 10**.
+* **AudioDuration:** Seconds to cut from the start of each song. **Must be > 20**.
+* **OutputFileName:** The destination filename (e.g., `mashup.mp3`).
 
 ### Example Run
 
 ```bash
-python 102303246.py "Sharry Maan" 20 30 output.mp3
-
-```
-
-*This command downloads 20 songs by Sharry Maan, trims the first 30 seconds of each, and saves the result as `output.mp3`.*
+python 102103123.py "Sharry Maan" 20 30 output.mp3
